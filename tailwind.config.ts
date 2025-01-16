@@ -1,18 +1,24 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss'
 
-export default {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+const config: Config = {
+  content: ['./src/pages/**/*.{js,ts,jsx,tsx,mdx}', './src/components/**/*.{js,ts,jsx,tsx,mdx}', './src/app/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary: '#F06071',
+        secondary: '#F4C2C3',
+
+        // member colors
+        tokimekiblue: '#69B0CB',
+        tokimekipurple: '#8E5AB4',
+        tokimekired: '#D75750',
+        tokimekipink: '#E292B4',
+        tokimekilemon: '#E9CC48',
+        tokimekigreen: '#5D9767',
+        tokimekiorange: '#F5A623',
       },
     },
   },
   plugins: [],
-} satisfies Config;
+}
+export default config
