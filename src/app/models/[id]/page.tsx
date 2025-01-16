@@ -1,15 +1,51 @@
-'use client'
-
 import Container from '@/components/Container'
-import LiDARViewer from '@/components/models/GLBModelView'
+import CostumeModelLoader from '@/components/models/CostumeModelLoader'
+import { getDictionary } from '@/i18n/dictionaries'
+import { Metadata } from 'next'
+import { getCostume, getCostumeModel } from '../../../../actions/costume'
 
-const modelUrl = 'https://pub-3ddc700c19d2426a84368fafe6fcb76b.r2.dev/yokoari.glb'
+type Props = {
+  params: Promise<{ id: string }>
+}
 
-const Model = () => {
+export const generateMetadata = async ({ params }: Props): Promise<Metadata | null> => {
+  const p = await params
+  const id = parseInt(p.id)
+  if (isNaN(id) || id < 1) {
+    return null
+  }
+  const model = await getCostumeModel(id)
+  if (!model) {
+    return null
+  } else {
+    const costume = await getCostume(model.costume_id)
+    if (!costume) {
+      return null
+    }
+    const { costumes: t } = await getDictionary()
+    const title = `${costume.name} - ${t.title}`
+    const description = t.desc
+    return {
+      title,
+      description,
+      openGraph: {
+        title,
+        description,
+      },
+    }
+  }
+}
+
+const Model = async ({ params }: Props) => {
+  const p = await params
+  const id = parseInt(p.id)
+  if (isNaN(id) || id < 1) {
+    return null
+  }
   return (
     <Container>
-      <div style={{ height: '75vh', width: '100vw' }}>
-        <LiDARViewer modelUrl={modelUrl} />
+      <div className="w-[100vw] h-[100vh]">
+        <CostumeModelLoader modelId={id} />
       </div>
     </Container>
   )

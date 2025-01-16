@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 import { GLTFLoader, OrbitControls } from 'three/examples/jsm/Addons.js'
@@ -80,7 +82,9 @@ const LiDARViewer = ({ modelUrl }: Props) => {
       animate()
     })
 
-    camera.position.z = 50
+    camera.position.x = 0
+    camera.position.y = 0
+    camera.position.z = 25
 
     const animate = () => {
       requestAnimationFrame(animate)
@@ -91,7 +95,7 @@ const LiDARViewer = ({ modelUrl }: Props) => {
     animate()
   }, [modelUrl])
 
-  return <div ref={containerRef} className="bg-white border border-gray-300 border-b-2" />
+  return <div ref={containerRef} className="" />
 }
 
 export default LiDARViewer

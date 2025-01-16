@@ -1,4 +1,4 @@
-import { getDictionary } from '@/app/i18n/dictionaries'
+import { getDictionary } from '@/i18n/dictionaries'
 import Link from 'next/link'
 
 const Footer = async () => {

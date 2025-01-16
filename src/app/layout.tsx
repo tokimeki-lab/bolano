@@ -1,9 +1,9 @@
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import { ReactNode } from 'react'
+import { getDictionary } from '../i18n/dictionaries'
+import { DictionaryProvider } from '../i18n/hook'
 import './globals.css'
-import { getDictionary } from './i18n/dictionaries'
-import { DictionaryProvider } from './i18n/hook'
 
 const currentLocale = 'ja'
 const currentBaseUrl = 'https://bolano.tokiken.com'
