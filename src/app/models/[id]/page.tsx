@@ -1,5 +1,6 @@
 import Container from '@/components/Container'
 import CostumeModelLoader from '@/components/models/CostumeModelLoader'
+import { currentBaseUrl } from '@/i18n/config'
 import { getDictionary } from '@/i18n/dictionaries'
 import { Metadata } from 'next'
 import { getCostume, getCostumeModel } from '../../../../actions/costume'
@@ -31,6 +32,12 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata | nu
       openGraph: {
         title,
         description,
+      },
+      twitter: {
+        title,
+        creator: '@kusabure',
+        images: [`${currentBaseUrl}/300x300.png`],
+        card: 'summary',
       },
     }
   }

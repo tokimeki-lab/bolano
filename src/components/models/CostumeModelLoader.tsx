@@ -25,7 +25,7 @@ const CostumeModelLoader = async ({ modelId }: Props) => {
       <div className="text-center">
         <Title title={costume?.name} />
       </div>
-      <div className="w-full max-w-md text-xs text-gray-500">
+      <div className="w-full max-w-md px-2 md:px-0 text-xs text-gray-500">
         <div className="flex gap-1">
           <span>衣装名:</span>
           <Link href={`https://tokiken.com/costumes/${costume.id}`} className="text-blue-500">

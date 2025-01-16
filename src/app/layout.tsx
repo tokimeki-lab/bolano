@@ -1,12 +1,10 @@
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
+import { currentBaseUrl, currentLocale } from '@/i18n/config'
 import { ReactNode } from 'react'
 import { getDictionary } from '../i18n/dictionaries'
 import { DictionaryProvider } from '../i18n/hook'
 import './globals.css'
-
-const currentLocale = 'ja'
-const currentBaseUrl = 'https://bolano.tokiken.com'
 
 export async function generateMetadata() {
   const { common } = await getDictionary()
