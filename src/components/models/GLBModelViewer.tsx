@@ -66,7 +66,7 @@ const GLBModelViewer = ({ modelUrl }: Props) => {
     loader.load(modelUrl, (gltf) => {
       const model = gltf.scene
       model.position.set(0, -1, 0)
-      scene.background = new THREE.Color(0x89bdde)
+      scene.background = new THREE.Color(0xffffff)
       scene.add(model)
 
       const controls = new OrbitControls(camera, renderer.domElement)

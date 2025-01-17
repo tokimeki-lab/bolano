@@ -32,10 +32,11 @@ const CostumeModelLoader = async ({ modelId }: Props) => {
         </div>
         {model.description && <div>{model.description}</div>}
         <div className="flex gap-1">
-          <span>撮影者:</span>
+          <span>モデルデータ提供:</span>
           <Link href={model.credit_url} target="_blank" className="text-blue-500">
             {model.credit}
           </Link>
+          {model.credit !== '草🌱' && <span>さん</span>}
         </div>
       </div>
       {model.url.endsWith('.glb') && <GLBModelViewer modelUrl={model.url} />}
