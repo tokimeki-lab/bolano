@@ -2,13 +2,13 @@
 
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
-import { GLTFLoader, OrbitControls } from 'three/examples/jsm/Addons.js'
+import { DRACOLoader, GLTFLoader, OrbitControls } from 'three/examples/jsm/Addons.js'
 
 type Props = {
   modelUrl: string
 }
 
-const LiDARViewer = ({ modelUrl }: Props) => {
+const GLBModelViewer = ({ modelUrl }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const sceneRef = useRef<THREE.Scene | null>(null)
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null)
@@ -20,6 +20,7 @@ const LiDARViewer = ({ modelUrl }: Props) => {
     const renderer = new THREE.WebGLRenderer({ antialias: true })
     renderer.setSize(window.innerWidth, window.innerHeight)
     renderer.setClearColor(THREE.Color.NAMES.white)
+
     if (containerRef.current) {
       containerRef.current.appendChild(renderer.domElement)
     }
@@ -59,11 +60,13 @@ const LiDARViewer = ({ modelUrl }: Props) => {
     }
 
     const loader = new GLTFLoader(loadingManager)
+    const dracoLoader: DRACOLoader = new DRACOLoader()
+    dracoLoader.setDecoderPath('/lib/')
+    loader.setDRACOLoader(dracoLoader)
     loader.load(modelUrl, (gltf) => {
       const model = gltf.scene
-      model.rotation.y = -Math.PI / 2
-      model.scale.set(4, 4, 4)
-      scene.background = new THREE.Color(0xffffff)
+      model.position.set(0, -1, 0)
+      scene.background = new THREE.Color(0x89bdde)
       scene.add(model)
 
       const controls = new OrbitControls(camera, renderer.domElement)
@@ -81,11 +84,9 @@ const LiDARViewer = ({ modelUrl }: Props) => {
       }
       animate()
     })
-
     camera.position.x = 0
     camera.position.y = 0
-    camera.position.z = 25
-
+    camera.position.z = 1
     const animate = () => {
       requestAnimationFrame(animate)
       if (sceneRef.current && cameraRef.current && rendererRef.current) {
@@ -95,7 +96,7 @@ const LiDARViewer = ({ modelUrl }: Props) => {
     animate()
   }, [modelUrl])
 
-  return <div ref={containerRef} className="" />
+  return <div ref={containerRef} className="select-none" />
 }
 
-export default LiDARViewer
+export default GLBModelViewer

@@ -10,11 +10,6 @@ const Footer = async () => {
           {common.title}
         </Link>
       </div>
-      <div className="flex justify-center space-x-4">
-        <Link href="https://twitter.com/kusabure" target="_blank" className="text-xs text-gray-500">
-          Twitter
-        </Link>
-      </div>
     </footer>
   )
 }
